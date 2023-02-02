@@ -38,7 +38,7 @@ cabecalho='<div id="logo" class="span8 small"><a title="Universidade Federal do 
 st.sidebar.title('Gestão Rurais')
 a=k
 #pg=st.sidebar.selectbox('Selecione a Página',['Solicitações em Aberto','Solicitações a Finalizar','Consulta'])
-pg=st.sidebar.radio('',['Solicitações em Aberto','Solicitações a Finalizar','Consulta'])
+pg=st.sidebar.radio('',['Solicitações em Aberto','Solicitações a Finalizar','Agendamentos'])
 
 
 if (pg=='Solicitações em Aberto'):
@@ -167,15 +167,19 @@ elif pg=='Solicitações a Finalizar':
             st.markdown(alerta + '<b>Senha incorreta!</b></p>', unsafe_allow_html=True)
     else:
         st.markdown(infor + '<b>Não há itens na condição ' + pg + '</b></p>', unsafe_allow_html=True)
-# elif pg=='Consulta':
-#     for dic in dados:
-#         if dic['Status'] not in ['Realizado','Não Procedente','']:
-#             print(dic['Nº da Solicitação'])
-#             n_solicitacao.append(dic['Nº da Solicitação'])
-#             nome.append(dic['Nome do Solicitante'])
-#             telefone.append(dic['Telefone'])
-#             predio.append(dic['Prédio'])
-#             sala.append(dic['Sala/Local'])
-#             data.append(dic['Data da Rurais'])
-#             observacao.append(dic['Observações'])
+elif pg=='Agendamentos':
+    contador = 0
+    st.markdown(cabecalho, unsafe_allow_html=True)
+    st.subheader(pg)
+    st.markdown(padrao + '<b>' + 'Codigo' + ' -  ' + 'Nome' + ' - ' + 'Telefone' + ' - ' + 'Região aproximada' + ' - ' + 'Data Programada' +  '</b></p>',
+                unsafe_allow_html=True)
+    st.markdown(padrao + '</p>', unsafe_allow_html=True)
+    for dic in dados:
+        #print(dic['Status'])
+        if dic['Status'] == 'Agendada':
+            print('Atendeu a condição')
+            contador += 1
+            st.markdown(padrao + '<b>'+str(dic['Código UFT'])+' - ' + str(dic['Nome']) + ' - ' + str(dic['Telefone'])+ ' - ' + dic['Região aproximada']+  ' - ' + str(dic['Data Programada'])+'</b></p>', unsafe_allow_html=True)
+            st.markdown(padrao + '</p>', unsafe_allow_html=True)
+
 
