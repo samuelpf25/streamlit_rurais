@@ -120,7 +120,7 @@ if (pg=='Solicitações em Aberto'):
 elif pg=='Solicitações a Finalizar':
     contador = 0
     for dic in dados:
-        if dic['Status'] not in ['Realizado','Não Procedente',''] and dic['Região aproximada']!='' and dic['Data de Solicitação'] != '': #'Registro de Reclamação',
+        if dic['Status'] not in ['Realizado','Não Procedente','','Procedente'] and dic['Região aproximada']!='' and dic['Data de Solicitação'] != '': #'Registro de Reclamação',
             print(dic['Código UFT'])
             n_solicitacao.append(str(dic['Código UFT']))
             tipo.append(dic['Serviços'])
