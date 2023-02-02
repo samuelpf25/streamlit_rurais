@@ -93,9 +93,19 @@ if (pg=='Solicitações em Aberto'):
         data_ag = datetime.strptime(d, '%d-%m-%Y')
 
         if (data_ag == ''):
-            data_ag = datetime.strptime("01-01-2021", '%d-%m-%Y')
+            data_ag = datetime.strptime("01-01-2023", '%d-%m-%Y')
 
         data_agendamento = st.date_input('Data de Agendamento (ANO/MÊS/DIA)', value=data_ag)
+        data = data_agendamento
+        data_formatada = str(data.day) + '/' + str(data.month) + '/' + str(data.year)
+
+        cont = 0
+        for dic in dados:
+            # print(dic['Status'])
+            if dic['Status'] == 'Agendada' and data_formatada == dic['Data Programada']:
+                #print('Atendeu a condição')
+                cont += 1
+        st.markdown(padrao + 'Agendamentos existentes na data: '+str(cont)+'</p>', unsafe_allow_html=True)
         #st.markdown('<p id="datepicker--screenreader--message--input" placeholder="DD/MM/YYYY"></p>',unsafe_allow_html=True)
         #data_agendamento.strftime('%d/%m/%Y')
         celula = sheet.find(n_solicitacao[n])
