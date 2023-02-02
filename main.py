@@ -182,15 +182,30 @@ elif pg=='Agendamentos':
     contador = 0
     st.markdown(cabecalho, unsafe_allow_html=True)
     st.subheader(pg)
-    st.markdown(padrao + '<b>' + 'Codigo' + ' -  ' + 'Nome' + ' - ' + 'Telefone' + ' - ' + 'Região aproximada' + ' - ' + 'Data Programada' +  '</b></p>',
-                unsafe_allow_html=True)
-    st.markdown(padrao + '</p>', unsafe_allow_html=True)
+    #st.markdown(padrao + '<b>' + 'Codigo' + ' -  ' + 'Nome' + ' - ' + 'Telefone' + ' - ' + 'Região aproximada' + ' - ' + 'Data Programada' +  '</b></p>', unsafe_allow_html=True)
+    #st.markdown(padrao + '</p>', unsafe_allow_html=True)
+    str_html = """
+            <table>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Região aproximada</th>
+        <th>Data Programada</th>
+      </tr>
+
+    """
+
     for dic in dados:
-        #print(dic['Status'])
+
         if dic['Status'] == 'Agendada':
             print('Atendeu a condição')
             contador += 1
-            st.markdown(padrao + '<b>'+str(dic['Código UFT'])+' - ' + str(dic['Nome']) + ' - ' + str(dic['Telefone'])+ ' - ' + dic['Região aproximada']+  ' - ' + str(dic['Data Programada'])+'</b></p>', unsafe_allow_html=True)
-            st.markdown(padrao + '</p>', unsafe_allow_html=True)
+            str_html += '<tr><td>'+str(dic['Código UFT'])+'</td><td>'+str(dic['Nome'])+'</td><td>'+str(dic['Telefone'])+'</td><td>'+dic['Região aproximada']+'</td><td>'+str(dic['Data Programada'])+'</td></tr>'
+
+            #st.markdown(padrao + '<b>'+str(dic['Código UFT'])+' - ' + str(dic['Nome']) + ' - ' + str(dic['Telefone'])+ ' - ' + dic['Região aproximada']+  ' - ' + str(dic['Data Programada'])+'</b></p>', unsafe_allow_html=True)
 
 
+
+    str_html += '</table'
+    st.markdown(str_html, unsafe_allow_html=True)
