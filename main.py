@@ -112,6 +112,7 @@ if (pg=='Solicitações em Aberto'):
         status=st.selectbox('Status',todos,index = todos.index(status_atual[n]))
         texto = st.text_area('Observação: ')
         s=st.text_input("Senha:",value="", type="password")
+        st.markdown(alerta + '<b>Em caso de agendamento, lembrar de alterar o status para Agendada e selecionar a data antes de registrar.</p>', unsafe_allow_html=True)
         botao=st.button('Registrar')
         if (botao==True and s==a):
 
