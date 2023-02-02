@@ -1,0 +1,25 @@
+{
+    "repostaseditaveis": [{
+        "status": {"Status [$opcoes]": ["Agendado","Pendente","Não Procedente"]},
+        "observacao": "Observação[$texto]",
+        "data": "Data Programada[$data]",
+
+    }],
+
+    "fiscalizacao": [{
+        "cod_fiscalizacao": "PRIMARY KEY",
+        "data": "",
+        "hora": "",
+        "cod_organizacao": "",
+        "cod_publicidade": "",
+        "cod_aspectos": "",
+        "cod_estrutura": "",
+        "cod_assistencia": "",
+        "cod_prontuario": "",
+        "cod_estagio": "",
+        "cod_exercicio": "",
+        "cod_vistoria_profissionais": "",
+        "cod_vistoria_estagiarios": "",
+        "cod_estabelecimento": ""
+    }]
+}
