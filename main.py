@@ -124,6 +124,7 @@ if (pg=='Solicitações em Aberto'):
             st.markdown(infor+'<b>Registro efetuado!</b></p>',unsafe_allow_html=True)
 
             sheet.update_acell('H'+str(celula.row),status)
+            sheet.update_acell('J' + str(celula.row), '')
             sheet.update_acell('K' + str(celula.row), texto) #observação
             data = data_agendamento
             data_formatada = str(data.day) + '/' + str(data.month) + '/' + str(data.year)
@@ -177,6 +178,7 @@ elif pg=='Solicitações a Finalizar':
             st.markdown(infor+'<b>Registro efetuado!</b></p>',unsafe_allow_html=True)
 
             sheet.update_acell('H'+str(celula.row),status)
+            sheet.update_acell('J' + str(celula.row), '')
             sheet.update_acell('K' + str(celula.row), texto) #observação
 
         elif (botao==True and s!=a):
