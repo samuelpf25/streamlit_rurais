@@ -46,7 +46,7 @@ if (pg=='Solicitações em Aberto'):
 
     st.markdown(cabecalho,unsafe_allow_html=True)
     st.subheader(pg)
-    filtro = st.selectbox('Filtrar',['Sem Status','Procedente'],index=1)
+    filtro = st.selectbox('Filtrar',['Sem Status','Procedente','Agendada'],index=1)
 
     for dic in dados:
         if (dic['Status'] == filtro or (filtro == 'Sem Status' and dic['Status'] == '')) and dic['Região aproximada']!='' and dic['Data de Solicitação'] != '': #'Registro de Reclamação',
@@ -100,12 +100,17 @@ if (pg=='Solicitações em Aberto'):
         data_formatada = str(data.day) + '/' + str(data.month) + '/' + str(data.year)
 
         cont = 0
+        codigos = ''
         for dic in dados:
-            # print(dic['Status'])
-            if dic['Status'] == 'Agendada' and data_formatada == dic['Data Programada']:
+            #print(dic['Data Programada'])
+            #print(data_formatada)
+
+            if dic['Status'] == 'Agendada' and datetime.strptime(data_formatada, '%d/%m/%Y') == datetime.strptime(dic['Data Programada'], '%d/%m/%Y'):
                 #print('Atendeu a condição')
                 cont += 1
-        st.markdown(padrao + 'Agendamentos existentes na data: '+str(cont)+'</p>', unsafe_allow_html=True)
+                codigos += str(dic['Código UFT']) + ' | '
+        if cont>0:
+            st.markdown(alerta + 'Agendamentos existentes na data: '+str(cont)+ '. N° Solicitação-> '+str(codigos)+ '</p>', unsafe_allow_html=True)
         #st.markdown('<p id="datepicker--screenreader--message--input" placeholder="DD/MM/YYYY"></p>',unsafe_allow_html=True)
         #data_agendamento.strftime('%d/%m/%Y')
         celula = sheet.find(n_solicitacao[n])
