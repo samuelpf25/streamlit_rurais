@@ -25,7 +25,9 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(json, scope)
 cliente = gspread.authorize(creds)
 
 #sheet = cliente.open("Ciente Rurais").sheet1 # Open the spreadhseet
-sheet=cliente.open_by_key('1Ofc7gL5ftXjbDjxXPhDknTpfImsR3iOjJN7yosq9VjQ').get_worksheet(0)
+sheet=cliente.open_by_url(
+    'https://docs.google.com/spreadsheets/d/1Ofc7gL5ftXjbDjxXPhDknTpfImsR3iOjJN7yosq9VjQ/edit?gid=1205802616#gid=1205802616').get_worksheet(
+    0)
 dados = sheet.get_all_records()  # Get a list of all records
 df=pd.DataFrame(dados)
 
